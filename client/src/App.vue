@@ -9,7 +9,6 @@ import { RouterView } from 'vue-router';
     <Navbar />
   </header>
   <main>
-    <div>HI</div>
     <RouterView />
   </main>
   <footer class=" text-center">
