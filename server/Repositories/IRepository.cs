@@ -2,9 +2,9 @@ namespace postit.Repositories;
 
 public interface IRepository<T>
 {
-  List<T> GetAll();
-  T GetById();
-  T Create();
+  IEnumerable<T> GetAll();
+  T GetById(int id);
+  T Create(T data);
   bool Delete(int id);
   T Update(T updataData);
 }
