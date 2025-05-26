@@ -1,9 +1,9 @@
 namespace postit.Repositories;
 
-public class ImageRepository
+public class ImagesRepository
 {
   private readonly IDbConnection _db;
-  public ImageRepository(IDbConnection db)
+  public ImagesRepository(IDbConnection db)
   {
     _db = db;
   }
@@ -13,7 +13,7 @@ public class ImageRepository
   //   return _db.Query<Image>("SELECT * FROM images;");
   // }
 
-  public List<Image> GetByAlbumId(int albumId)
+  internal List<Image> GetByAlbumId(int albumId)
   {
     string sql = @"
     SELECT
@@ -31,7 +31,7 @@ public class ImageRepository
     return images;
   }
 
-  public Image Create(Image imageData)
+  internal Image Create(Image imageData)
   {
     string sql = @"INSERT INTO
     images (creator_id, album_id, img_url)
@@ -51,20 +51,20 @@ public class ImageRepository
     return createdImage;
   }
 
-  public Image GetPictureById(int imageId)
+  internal Image GetPictureById(int imageId)
   {
     string sql = "SELECT * FROM images WHERE id = @imageId;";
     Image foundImage = _db.Query<Image>(sql, new { imageId }).SingleOrDefault();
     return foundImage;
   }
 
-  public bool Delete(int id)
+  internal bool Delete(int id)
   {
     string sql = "DELETE FROM images WHERE id = @Id LIMIT 1;";
     return _db.Execute(sql, new { id }) > 0;
   }
 
-  // public Image Update(Image updateData)
+  // internal Image Update(Image updateData)
   // {
   //   string sql = "UPDATE images SET id = @Id;";
   //   _db.Execute(sql, updateData);

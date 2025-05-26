@@ -2,15 +2,15 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace postit.Repositories;
 
-public class AlbumRepository
+public class AlbumsRepository
 {
   private readonly IDbConnection _db;
-  public AlbumRepository(IDbConnection db)
+  public AlbumsRepository(IDbConnection db)
   {
     _db = db;
   }
 
-  public List<Album> GetAll()
+  internal List<Album> GetAll()
   {
     string sql = @"
     SELECT
@@ -27,7 +27,7 @@ public class AlbumRepository
     return albums;
   }
 
-  public Album GetById(int id)
+  internal Album GetById(int id)
   {
     string sql = @"
     SELECT 
@@ -44,7 +44,7 @@ public class AlbumRepository
     return foundAlbum;
   }
 
-  public Album Create(Album albumData)
+  internal Album Create(Album albumData)
   {
     string sql = @"INSERT INTO albums 
     (title, description, cover_img, category, creator_id)
@@ -59,13 +59,13 @@ public class AlbumRepository
     return createdAlbum;
   }
 
-  //   public bool Delete(int id)
+  //   internal bool Delete(int id)
   //   {
   //     string sql = "DELETE FROM albums WHERE id = @Id LIMIT 1;";
   //     return _db.Execute(sql, new { id }) > 0;
   //   }
 
-  //   public Album Update(Album updateData)
+  //   internal Album Update(Album updateData)
   //   {
   //     string sql = "UPDATE albums SET id = @Id WHERE id = @Id;";
   //     _db.Execute(sql, updateData);
@@ -73,7 +73,7 @@ public class AlbumRepository
   //   }
   // }
 
-  public void ArchiveAlbum(Album album)
+  internal void ArchiveAlbum(Album album)
   {
     string sql = "UPDATE albums SET archived = @Archived WHERE id = @id LIMIT 1;";
     int rowsAffected = _db.Execute(sql, album);
@@ -86,7 +86,7 @@ public class AlbumRepository
     }
   }
 
-  public List<Album> GetAlbumsByCategory(string category)
+  internal List<Album> GetAlbumsByCategory(string category)
   {
     string sql = @"
     SELECT
