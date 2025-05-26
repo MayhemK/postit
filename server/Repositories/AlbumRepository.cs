@@ -22,7 +22,8 @@ public class AlbumRepository : IRepository<Album>
 
   public Album Create(Album album)
   {
-    string sql = "INSERT INTO albums (title, description, cover_img, category, creator_id) VALUES (@Title, @Description, @CoverImg, @Category, @CreatorId); SELECT albums.*, accounts.* FROM albums INNER JOIN accounts on accounts.id = albums.creator_id WHERE albums.id = LAST_INSERT_ID(); ";
+    string sql = @"INSERT INTO albums (title, description, cover_img, category, creator_id) VALUES (@Title, @Description, @CoverImg, @Category, @CreatorId);
+    SELECT albums.*, accounts.* FROM albums INNER JOIN accounts on accounts.id = albums.creator_id WHERE albums.id = LAST_INSERT_ID(); ";
     int id = _db.ExecuteScalar<int>(sql, album);
     album.Id = id;
     {

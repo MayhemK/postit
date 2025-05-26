@@ -21,8 +21,8 @@ public class ImageRepository : IRepository<Image>
   public Image Create(Image imageData)
   {
     string sql = @"INSERT INTO
-    images (stuff)
-    VALUES (@Stuff); 
+    images (creator_id, album_id, img_url)
+    VALUES (@CreatorId, @AlbumId, @ImgUrl); 
     
     SELECT images.*,
     accounts.*
