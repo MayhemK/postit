@@ -1,6 +1,6 @@
 namespace postit.Repositories;
 
-public class ImageRepository : IRepository<Image>
+public class ImageRepository
 {
   private readonly IDbConnection _db;
   public ImageRepository(IDbConnection db)
@@ -8,14 +8,27 @@ public class ImageRepository : IRepository<Image>
     _db = db;
   }
 
-  public IEnumerable<Image> GetAll()
-  {
-    return _db.Query<Image>("SELECT * FROM images;");
-  }
+  // public List<Image> GetAll()
+  // {
+  //   return _db.Query<Image>("SELECT * FROM images;");
+  // }
 
-  public Image GetById(int id)
+  public List<Image> GetByAlbumId(int albumId)
   {
-    return _db.QueryFirstOrDefault<Image>("SELECT * FROM images WHERE id = @Id;", new { id });
+    string sql = @"
+    SELECT
+    images.*,
+    accounts.*
+    FROM images
+    INNER JOIN accounts ON accounts.id = images.creator_id
+    WHERE images.album_id = @albumId;";
+
+    List<Image> images = _db.Query(sql, (Image image, Profile account) =>
+    {
+      image.Creator = account;
+      return image;
+    }, new { albumId }).ToList();
+    return images;
   }
 
   public Image Create(Image imageData)
@@ -38,16 +51,23 @@ public class ImageRepository : IRepository<Image>
     return createdImage;
   }
 
+  public Image GetPictureById(int imageId)
+  {
+    string sql = "SELECT * FROM images WHERE id = @imageId;";
+    Image foundImage = _db.Query<Image>(sql, new { imageId }).SingleOrDefault();
+    return foundImage;
+  }
+
   public bool Delete(int id)
   {
     string sql = "DELETE FROM images WHERE id = @Id LIMIT 1;";
     return _db.Execute(sql, new { id }) > 0;
   }
 
-  public Image Update(Image updateData)
-  {
-    string sql = "UPDATE images SET id = @Id;";
-    _db.Execute(sql, updateData);
-    return updateData;
-  }
+  // public Image Update(Image updateData)
+  // {
+  //   string sql = "UPDATE images SET id = @Id;";
+  //   _db.Execute(sql, updateData);
+  //   return updateData;
+  // }
 }
