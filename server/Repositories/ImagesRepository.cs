@@ -51,7 +51,7 @@ public class ImagesRepository
     return createdImage;
   }
 
-  internal Image GetPictureById(int imageId)
+  internal Image GetImageById(int imageId)
   {
     string sql = "SELECT * FROM images WHERE id = @imageId;";
     Image foundImage = _db.Query<Image>(sql, new { imageId }).SingleOrDefault();
