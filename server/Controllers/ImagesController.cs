@@ -1,7 +1,7 @@
 namespace postit.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/pictures")]
 public class ImagesController(ImagesService imagesService, Auth0Provider auth0Provider) : ControllerBase
 {
   private readonly ImagesService _imagesService = imagesService;

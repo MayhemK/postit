@@ -9,5 +9,20 @@ public class AlbumsController(AlbumsService albumsService, Auth0Provider auth0Pr
   private readonly ImagesService _imagesService = imagesService;
   // TODO add watcher service
 
-
+  [Authorize]
+  [HttpPost]
+  public async Task<ActionResult<Album>> Create([FromBody] Album albumData)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      albumData.CreatorId = userInfo.Id;
+      Album album = _albumsService.Create(albumData);
+      return Ok(album);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 }
