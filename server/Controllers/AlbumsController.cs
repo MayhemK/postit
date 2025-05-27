@@ -25,4 +25,6 @@ public class AlbumsController(AlbumsService albumsService, Auth0Provider auth0Pr
       return BadRequest(exception.Message);
     }
   }
+
+
 }

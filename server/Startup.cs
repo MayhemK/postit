@@ -69,8 +69,8 @@ public class Startup
       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     }).AddJwtBearer(options =>
     {
-      options.Authority = $"https://{Configuration["AUTH_DOMAIN"]}/";
-      options.Audience = Configuration["AUTH_AUDIENCE"];
+      options.Authority = $"https://{Configuration["AUTH0_DOMAIN"]}/";
+      options.Audience = Configuration["AUTH0_AUDIENCE"];
     });
 
   }
