@@ -18,7 +18,7 @@ public class AlbumsRepository
     accounts.*
     FROM albums
     INNER JOIN accounts on accounts.id = albums.creator_id;";
-    List<Album> albums = _db.Query(sql, (Album album, Profile account) =>
+    List<Album> albums = _db.Query(sql, (Album album, Account account) =>
     {
       album.Creator = account;
       return album;
@@ -36,7 +36,7 @@ public class AlbumsRepository
     FROM albums
     INNER JOIN accounts ON accounts.id = albums.creator_id
     WHERE albums.id = @id;";
-    Album foundAlbum = _db.Query(sql, (Album album, Profile account) =>
+    Album foundAlbum = _db.Query(sql, (Album album, Account account) =>
     {
       album.Creator = account;
       return album;
@@ -51,7 +51,7 @@ public class AlbumsRepository
     VALUES 
     (@Title, @Description, @CoverImg, @Category, @CreatorId);
     SELECT albums.*, accounts.* FROM albums INNER JOIN accounts on accounts.id = albums.creator_id WHERE albums.id = LAST_INSERT_ID(); ";
-    Album createdAlbum = _db.Query(sql, (Album album, Profile account) =>
+    Album createdAlbum = _db.Query(sql, (Album album, Account account) =>
     {
       album.Creator = account;
       return album;
@@ -95,7 +95,7 @@ public class AlbumsRepository
     FROM albums
     INNER JOIN accounts ON accounts.id = albums.creator_id
     WHERE albums.category LIKE @Category;";
-    List<Album> albums = _db.Query(sql, (Album album, Profile account) =>
+    List<Album> albums = _db.Query(sql, (Album album, Account account) =>
     {
       album.Creator = account;
       return album;

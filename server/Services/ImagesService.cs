@@ -32,7 +32,7 @@ public class ImagesService(ImagesRepository repo, AlbumsService aserv)
     return image;
   }
 
-  internal void Delete(int imageId, Profile userInfo)
+  internal void Delete(int imageId, Account userInfo)
   {
     Image image = GetImageById(imageId);
     if (image.CreatorId != userInfo.Id)

@@ -23,7 +23,7 @@ public class ImagesRepository
     INNER JOIN accounts ON accounts.id = images.creator_id
     WHERE images.album_id = @albumId;";
 
-    List<Image> images = _db.Query(sql, (Image image, Profile account) =>
+    List<Image> images = _db.Query(sql, (Image image, Account account) =>
     {
       image.Creator = account;
       return image;
