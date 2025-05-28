@@ -4,10 +4,10 @@ public class WatchersService(WatchersRepository repository)
 {
   private readonly WatchersRepository _repo = repository;
 
-  internal WatcherProfile CreateWatcher(Watcher watcherData)
+  internal Watcher CreateWatcher(Watcher watcherData)
   {
-    WatcherProfile watcherProfile = _repo.CreateWatcher(watcherData);
-    return watcherProfile;
+    Watcher watcher = _repo.CreateWatcher(watcherData);
+    return watcher;
   }
 
   internal List<WatcherProfile> GWPBAI(int albumId)

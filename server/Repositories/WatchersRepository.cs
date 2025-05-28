@@ -4,7 +4,7 @@ public class WatchersRepository(IDbConnection db)
 {
   private readonly IDbConnection _db = db;
 
-  internal WatcherProfile CreateWatcher(Watcher watcherData)
+  internal Watcher CreateWatcher(Watcher watcherData)
   {
     string sql = @"
     INSERT INTO
@@ -12,19 +12,23 @@ public class WatchersRepository(IDbConnection db)
     VALUES (@AlbumId, @AccountId);
     
     SELECT
-    watcher.*,
-    accounts.*
+    watchers.*
     FROM watchers
-    INNER JOIN accounts ON accounts.id = watchers.account_id
     WHERE watchers.id = LAST_INSERT_ID();";
 
-    WatcherProfile watcherProfile = _db.Query(sql, (Watcher watcher, WatcherProfile profile) =>
-    {
-      profile.AlbumId = watcher.AlbumId;
-      profile.WatcherId = watcher.Id;
-      return profile;
-    }, watcherData).SingleOrDefault();
-    return watcherProfile;
+    //NOTE - postman didn't like the format  this extended version was returning
+    // INNER JOIN accounts ON accounts.id = watchers.account_id
+
+    // WatcherProfile watcherProfile = _db.Query(sql, (Watcher watcher, WatcherProfile profile) =>
+    // {
+    //   profile.AlbumId = watcher.AlbumId;
+    //   profile.WatcherId = watcher.Id;
+    //   return profile;
+    // }, watcherData).SingleOrDefault();
+    // return watcherProfile;
+
+    Watcher createdWatcher = _db.Query<Watcher>(sql, watcherData).SingleOrDefault();
+    return createdWatcher;
   }
 
   internal List<WatcherProfile> GetWatcherProfilesByAlbumId(int albumId)
@@ -34,7 +38,7 @@ public class WatchersRepository(IDbConnection db)
     watchers.*,
     accounts.*
     FROM watchers
-    INNER JOIN accounts ON account.id = watchers.account_id
+    INNER JOIN accounts ON accounts.id = watchers.account_id
     WHERE watchers.album_id = @albumId;";
     List<WatcherProfile> watcherProfiles = _db.Query(sql, (Watcher watcher, WatcherProfile account) =>
     {
@@ -53,7 +57,7 @@ public class WatchersRepository(IDbConnection db)
     albums.*,
     accounts.*
     FROM watchers
-    INNER JOIN albums ON albums.id = watcher.album_id
+    INNER JOIN albums ON albums.id = watchers.album_id
     INNER JOIN accounts ON accounts.id = albums.creator_id
     WHERE watchers.account_id = @accountId;";
     List<WatcherAlbum> watcherAlbums = _db.Query(sql, (Watcher watcher, WatcherAlbum album, Account account) =>
