@@ -22,7 +22,7 @@ async function getAlbums() {
 </script>
 
 <template>
-  <section class="container">
+  <section class="container mt-3 bg-stars">
     <div class="row">
       <div v-for="album in albums" :key="album.id" class="col-md-4">
         <AlbumCard :album="album" />
