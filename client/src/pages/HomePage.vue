@@ -71,9 +71,9 @@ async function getAlbums() {
       </div>
     </div>
     <div class="row border-bottom border-white my-2 text-light">
-      <div v-for="category in categories" :key="category.id" class="col-6 col-md-3">
+      <div v-for="category in categories" :key="'filter ' + category.id" class="col-6 col-md-3">
         <div @click="filterCategory = category.name"
-          class="fw-bold fs-3 p-4 text-center rounded-2 mb-2 cat-button text-shadow text-light"
+          class="fw-bold fs-3 p-4 text-center rounded-2 mb-2 cat-button text-shadow text-light text-capitalize"
           :style="{ backgroundImage: `url(${category.backgroundImg})` }" role="button">
           {{ category.name }}
         </div>
@@ -81,7 +81,7 @@ async function getAlbums() {
       <div v-if="account" class="col-6 col-md-3">
         <div class="fw-bold fs-3 p-4 text-center rounded-2 mb-2 create-button text-shadow text-light" role="button"
           data-bs-toggle="modal" data-bs-target="#albumModal">
-          s
+          <span>New Album</span>
         </div>
       </div>
     </div>
