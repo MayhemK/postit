@@ -2,12 +2,12 @@ namespace postit.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AlbumsController(AlbumsService albumsService, Auth0Provider auth0Provider, ImagesService imagesService) : ControllerBase
+public class AlbumsController(AlbumsService albumsService, Auth0Provider auth0Provider, ImagesService imagesService, WatchersService watchersService) : ControllerBase
 {
   private readonly AlbumsService _albumsService = albumsService;
   private readonly Auth0Provider _auth0Provider = auth0Provider;
   private readonly ImagesService _imagesService = imagesService;
-  // TODO add watcher service
+  private readonly WatchersService _watchersService = watchersService;
 
   [Authorize]
   [HttpPost]
@@ -92,17 +92,17 @@ public class AlbumsController(AlbumsService albumsService, Auth0Provider auth0Pr
     }
   }
 
-  // [HttpGet("{albumId}/watchers")]
-  // public ActionResult<List<watcherProfile>> GetWatcherProfileByAlbumId(int albumId)
-  // {
-  //   try
-  //   {
-  //     List<WatcherProfile> watcherProfiles = _watcherService.GetWatcherProfilesByAlbumId(albumId);
-  //     return Ok(watcherProfiles);
-  //   }
-  //   catch (Exception exception)
-  //   {
-  //     return BadRequest(exception.Message);
-  //   }
-  // }
+  [HttpGet("{albumId}/watchers")]
+  public ActionResult<List<WatcherProfile>> GetWatcherProfileByAlbumId(int albumId)
+  {
+    try
+    {
+      List<WatcherProfile> watcherProfiles = _watchersService.GWPBAI(albumId);
+      return Ok(watcherProfiles);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 }
