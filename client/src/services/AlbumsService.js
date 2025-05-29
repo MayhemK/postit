@@ -5,6 +5,11 @@ import { Album } from "@/models/Album.js"
 import { router } from "@/router.js"
 
 class AlbumsService{
+  async archiveAlbum(albumId) {
+    const res = await api.delete(`api/albums/${albumId}`)
+    const album = new Album(res.data)
+    AppState.activeAlbum = album
+  }
   async getAlbumById(albumId) {
     AppState.activeAlbum = null
     const res = await api.get(`api/albums/${albumId}`)

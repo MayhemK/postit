@@ -17,7 +17,8 @@ public class AlbumsRepository
     albums.*,
     accounts.*
     FROM albums
-    INNER JOIN accounts on accounts.id = albums.creator_id;";
+    INNER JOIN accounts on accounts.id = albums.creator_id
+    ORDER BY albums.created_at DESC;";
     List<Album> albums = _db.Query(sql, (Album album, Account account) =>
     {
       album.Creator = account;

@@ -48,3 +48,8 @@ CREATE TABLE watchers (
     FOREIGN KEY (album_id) REFERENCES albums (id) ON DELETE CASCADE,
     UNIQUE (account_id, album_id)
 );
+
+SELECT albums.*, accounts.*
+FROM albums
+    INNER JOIN accounts on accounts.id = albums.creator_id
+ORDER BY albums.created_at DESC;

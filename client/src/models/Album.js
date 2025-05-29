@@ -3,6 +3,7 @@ export class Album{
     this.id = data.id
     this.creatorId = data.creatorId
     this.title = data.title
+    this.description = data.description
     this.coverImg = data.coverImg
     this.archived = data.archived
     this.category = data.category
