@@ -25,7 +25,6 @@ class AlbumsService{
   }
   async getAlbums() {
     const res = await api.get('api/albums')
-    logger.log('Got Albums', res.data)
     const albums = res.data.map(pojo => new Album(pojo))
     AppState.albums = albums
   }

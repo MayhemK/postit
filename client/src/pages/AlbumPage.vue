@@ -1,15 +1,20 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import PictureCard from '@/components/PictureCard.vue';
 import { albumsService } from '@/services/AlbumsService.js';
+import { picturesService } from '@/services/PictureService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const album = computed(() => AppState.activeAlbum)
+const picture = computed(() => AppState.pictures)
+const userInfo = computed(() => AppState.account)
 
 onMounted(() => {
   getAlbumById()
+  getPicturesByAlbum()
 })
 
 async function getAlbumById() {
@@ -26,6 +31,16 @@ async function archiveAlbum() {
   try {
     const albumId = route.params.albumId
     await albumsService.archiveAlbum(albumId)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
+
+async function getPicturesByAlbum() {
+  try {
+    const albumId = route.params.albumId
+    await picturesService.getPicturesByAlbum(albumId)
   }
   catch (error) {
     Pop.error(error);
@@ -67,12 +82,17 @@ async function archiveAlbum() {
                           <div class="bg-primary rounded-3 text-center text-capitalize m-0 p-2">{{ album.category }}
                           </div>
                         </div>
-                        <div class="col-2">
-                          <div @click="archiveAlbum()" class="bg-danger rounded-3 text-center text-capitalize m-0 p-2"
-                            type="button">Archive
+                        <div v-if="userInfo && album.creator.id == userInfo.id" class="col-2">
+                          <div v-if="album.archived" @click="archiveAlbum()"
+                            class="bg-danger rounded-3 text-center text-capitalize m-0 p-2" type="button">Unlock
+                            <span class="mdi mdi-lock-open"></span>
+                          </div>
+                          <div v-else @click="archiveAlbum()"
+                            class="bg-danger rounded-3 text-center text-capitalize m-0 p-2" type="button">Archive
                             <span class="mdi mdi-lock"></span>
                           </div>
                         </div>
+
                       </div>
                     </div>
                   </div>
@@ -81,7 +101,17 @@ async function archiveAlbum() {
             </div>
           </div>
           <div class="row">
+            <div class="col-12">
+              <div class="mt-3">
+                <!-- <div v-for="picture in picture" :key="picture.id">
+                  <PictureCard :picture="picture" />
+                </div> -->
+                <div>{{ picture }}</div>
+                <div>
 
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
