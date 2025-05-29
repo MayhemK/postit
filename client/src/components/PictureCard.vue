@@ -2,17 +2,20 @@
 import { Picture } from '@/models/Picture.js';
 
 defineProps({
-  image: { type: Picture, required: true }
+  picture: { type: Picture, required: true }
 })
 </script>
 
 
 <template>
   <div>
-    <div>{{ image }}</div>
-    <div>hi</div>
+    <img :src="picture.imgUrl" alt="">
   </div>
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+  max-width: 100%;
+}
+</style>

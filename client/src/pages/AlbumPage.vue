@@ -9,7 +9,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const album = computed(() => AppState.activeAlbum)
-const picture = computed(() => AppState.pictures)
+const pictures = computed(() => AppState.pictures)
 const userInfo = computed(() => AppState.account)
 
 onMounted(() => {
@@ -102,11 +102,10 @@ async function getPicturesByAlbum() {
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="mt-3">
-                <!-- <div v-for="picture in picture" :key="picture.id">
+              <div class="row mt-4">
+                <div v-for="picture in pictures" :key="picture.id" class="col-md-4">
                   <PictureCard :picture="picture" />
-                </div> -->
-                <div>{{ picture }}</div>
+                </div>
                 <div>
 
                 </div>
