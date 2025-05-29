@@ -5,6 +5,12 @@ import { Album } from "@/models/Album.js"
 import { router } from "@/router.js"
 
 class AlbumsService{
+  async getAlbumById(albumId) {
+    AppState.activeAlbum = null
+    const res = await api.get(`api/albums/${albumId}`)
+    const album = new Album(res.data)
+    AppState.activeAlbum = album
+  }
   async createAlbum(albumData) {
     const res = await api.post('api/albums', albumData)
     logger.log('Create Album', res.data)
