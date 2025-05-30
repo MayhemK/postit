@@ -1,5 +1,25 @@
 <script setup>
+import { albumsService } from '@/services/AlbumsService.js';
+import { watchersService } from '@/services/WatchersService.js';
+import { Pop } from '@/utils/Pop.js';
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
+
+onMounted(() => {
+  getWatchersByAlbumId()
+})
+
+async function getWatchersByAlbumId() {
+  try {
+    const albumId = route.params.albumId
+    await watchersService.getWatchersByAlbumId(albumId)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 </script>
 
 

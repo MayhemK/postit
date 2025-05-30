@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import CreatePictureModal from '@/components/CreatePictureModal.vue';
 import PictureCard from '@/components/PictureCard.vue';
 import WatcherBar from '@/components/WatcherBar.vue';
 import { albumsService } from '@/services/AlbumsService.js';
@@ -37,6 +38,7 @@ async function archiveAlbum() {
     Pop.error(error);
   }
 }
+
 
 async function getPicturesByAlbum() {
   try {
@@ -105,19 +107,23 @@ async function getPicturesByAlbum() {
               <div class="row mt-4">
                 <div class="col-12 text-center">
                   <WatcherBar />
-                  <div v-if="userInfo" class="btn btn-warning ">
+                  <div v-if="userInfo" class="btn btn-warning" :disabled="album.archived" data-bs-toggle="modal"
+                    data-bs-target="#pictureModal">
                     Submit Picture
                   </div>
+                  <div>modal</div>
                 </div>
               </div>
             </div>
             <div class="col-8">
-              <div class="row mt-4">
-                <div v-for="picture in pictures" :key="picture.id" class="col-md-4">
-                  <PictureCard :picture="picture" />
-                </div>
-                <div class="bg-dark-glass">
-                  Like what you see? Log in and Follow this album, Maybe even submit more pictures!
+              <div class="container masonry-container">
+                <div class="row mt-4">
+                  <div v-for="picture in pictures" :key="picture.id" class="col-md-4">
+                    <PictureCard :picture="picture" />
+                  </div>
+                  <div class="bg-dark-glass">
+                    Like what you see? Log in and Follow this album, Maybe even submit more pictures!
+                  </div>
                 </div>
               </div>
             </div>
@@ -126,6 +132,7 @@ async function getPicturesByAlbum() {
       </div>
     </div>
   </section>
+  <CreatePictureModal />
 </template>
 
 
