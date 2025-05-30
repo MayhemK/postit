@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import PictureCard from '@/components/PictureCard.vue';
+import WatcherBar from '@/components/WatcherBar.vue';
 import { albumsService } from '@/services/AlbumsService.js';
 import { picturesService } from '@/services/PictureService.js';
 import { Pop } from '@/utils/Pop.js';
@@ -85,14 +86,13 @@ async function getPicturesByAlbum() {
                         <div v-if="userInfo && album.creator.id == userInfo.id" class="col-2">
                           <div v-if="album.archived" @click="archiveAlbum()"
                             class="bg-danger rounded-3 text-center text-capitalize m-0 p-2" type="button">Unlock
-                            <span class="mdi mdi-lock-open"></span>
+                            <span class="mdi mdi-lock-open-variant"></span>
                           </div>
                           <div v-else @click="archiveAlbum()"
                             class="bg-danger rounded-3 text-center text-capitalize m-0 p-2" type="button">Archive
                             <span class="mdi mdi-lock"></span>
                           </div>
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -101,13 +101,23 @@ async function getPicturesByAlbum() {
             </div>
           </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-4">
+              <div class="row mt-4">
+                <div class="col-12 text-center">
+                  <WatcherBar />
+                  <div v-if="userInfo" class="btn btn-warning ">
+                    Submit Picture
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
               <div class="row mt-4">
                 <div v-for="picture in pictures" :key="picture.id" class="col-md-4">
                   <PictureCard :picture="picture" />
                 </div>
-                <div>
-
+                <div class="bg-dark-glass">
+                  Like what you see? Log in and Follow this album, Maybe even submit more pictures!
                 </div>
               </div>
             </div>
@@ -130,5 +140,24 @@ async function getPicturesByAlbum() {
   height: 3.7em;
   aspect-ratio: 1/1;
   border-radius: 50%;
+}
+
+.masonry-container {
+  columns: 200px;
+}
+
+.masonry-container>* {
+  display: inline-block;
+  break-inside: avoid;
+}
+
+.masonry-container img {
+  width: 100%;
+}
+
+.picture-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
 </style>

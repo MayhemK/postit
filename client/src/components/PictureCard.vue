@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div>
-    <img :src="picture.imgUrl" alt="">
+    <img :src="picture.imgUrl" alt="" class="rounded-5">
   </div>
 </template>
 
