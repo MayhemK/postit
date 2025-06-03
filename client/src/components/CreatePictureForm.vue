@@ -24,7 +24,7 @@ async function createPicture() {
 
 
 <template>
-  <Form @submit.prevent="createPicture()">
+  <form @submit.prevent="createPicture()">
     <div class="form-floating mb-3">
       <input v-model="editablePictureData.imgUrl" type="url" class="form-control" id="pictureImgUrl"
         placeholder="Picture URL" maxlength="1000" required>
@@ -33,7 +33,7 @@ async function createPicture() {
     <div class="text-end">
       <button class="btn btn-primary" type="submit">Submit</button>
     </div>
-  </Form>
+  </form>
 </template>
 
 

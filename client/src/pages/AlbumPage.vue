@@ -13,7 +13,6 @@ const route = useRoute()
 const album = computed(() => AppState.activeAlbum)
 const pictures = computed(() => AppState.pictures)
 const userInfo = computed(() => AppState.account)
-
 onMounted(() => {
   getAlbumById()
   getPicturesByAlbum()
@@ -111,19 +110,21 @@ async function getPicturesByAlbum() {
                     data-bs-target="#pictureModal">
                     Submit Picture
                   </div>
-                  <div>modal</div>
                 </div>
               </div>
             </div>
             <div class="col-8">
               <div class="container masonry-container">
                 <div class="row mt-4">
-                  <div v-for="picture in pictures" :key="picture.id" class="col-md-4">
-                    <PictureCard :picture="picture" />
+                  <div v-if="pictures">
+                    <div v-for="picture in pictures" :key="picture.id" class="col-md-4">
+                      <PictureCard :picture="picture" />
+                    </div>
+                    <div class="bg-dark-glass">
+                      Like what you see? Log in and Follow this album, Maybe even submit more pictures!
+                    </div>
                   </div>
-                  <div class="bg-dark-glass">
-                    Like what you see? Log in and Follow this album, Maybe even submit more pictures!
-                  </div>
+                  <div v-else>No Images in this album! Add some!</div>
                 </div>
               </div>
             </div>

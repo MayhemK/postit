@@ -2,10 +2,13 @@
 import { albumsService } from '@/services/AlbumsService.js';
 import { watchersService } from '@/services/WatchersService.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
+import { AppState } from '@/AppState.js';
 
 const route = useRoute()
+const watcher = computed(() => AppState.watcherProfiles)
+
 
 onMounted(() => {
   getWatchersByAlbumId()
@@ -28,7 +31,7 @@ async function getWatchersByAlbumId() {
     <div class="col-7">
       <div class="bg-dark-glass h-100 rounded-4 d-flex flex-column justify-content-around mx-0">
         <div class="fs-2 ">
-          #
+          {{ watcher.length }}
         </div>
         <div>
           watchers
