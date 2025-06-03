@@ -42,7 +42,7 @@ async function createWatcher() {
     <div class="col-7">
       <div class="bg-dark-glass h-100 rounded-4 d-flex flex-column justify-content-around mx-0">
         <div class="fs-2 ">
-          <!-- {{ watchers.length }} -->
+          {{ watchers.length }}
           N/A
         </div>
         <div>
@@ -60,6 +60,7 @@ async function createWatcher() {
     </div>
     <div class="row">
       <div class="col-12">
+
         <!-- <div v-for="watcher in watchers" :key="watcher.accountId">
           hi
 
