@@ -3,6 +3,15 @@ import { Picture } from "@/models/Picture.js"
 import { api } from "./AxiosService.js"
 
 class PictureService {
+  // async plusViews(id) {
+  //   const res = await api.get(`api/pictures/${id}`)
+  //   // TODO ADD VIEWS COLUMN DATA
+  //   // AppState.activePicture.views++
+  //   AppState.activePicture = new Picture(res.data)
+  // }
+  setActivePicture(picture) {
+    AppState.activePicture = picture
+  }
   async createPicture(pictureData) {
     const res = await api.post('api/pictures', pictureData)
     AppState.pictures.push(new Picture(res.data))

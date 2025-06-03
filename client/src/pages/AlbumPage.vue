@@ -2,6 +2,7 @@
 import { AppState } from '@/AppState.js';
 import CreatePictureModal from '@/components/CreatePictureModal.vue';
 import PictureCard from '@/components/PictureCard.vue';
+import PictureModal from '@/components/PictureModal.vue';
 import WatcherBar from '@/components/WatcherBar.vue';
 import { albumsService } from '@/services/AlbumsService.js';
 import { picturesService } from '@/services/PictureService.js';
@@ -104,13 +105,13 @@ async function getPicturesByAlbum() {
           <div class="row">
             <div class="col-4">
               <div class="row mt-4">
-                <!-- <div class="col-12 text-center">
+                <div class="col-12 text-center">
                   <WatcherBar />
-                  <div v-if="userInfo" class="btn btn-warning" :disabled="album.archived" data-bs-toggle="modal"
+                  <!-- <div v-if="userInfo" class="btn btn-warning" :disabled="album.archived" data-bs-toggle="modal"
                     data-bs-target="#pictureModal">
                     Submit Picture
-                  </div>
-                </div> -->
+                  </div> -->
+                </div>
                 <div>
                   This is where watcher bar will go
                 </div>
@@ -137,6 +138,7 @@ async function getPicturesByAlbum() {
     </div>
   </section>
   <CreatePictureModal />
+  <PictureModal />
 </template>
 
 

@@ -42,7 +42,8 @@ async function createWatcher() {
     <div class="col-7">
       <div class="bg-dark-glass h-100 rounded-4 d-flex flex-column justify-content-around mx-0">
         <div class="fs-2 ">
-          {{ watchers.length }}
+          <!-- {{ watchers.length }} -->
+          N/A
         </div>
         <div>
           watchers
