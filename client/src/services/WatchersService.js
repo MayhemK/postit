@@ -6,6 +6,7 @@ import { AppState } from "@/AppState.js"
 class WatchersService {
   async getWatchersByAlbumId(albumId) {
     const res = await api.get(`api/albums/${albumId}/watchers`)
+    logger.log(res.data, 'got watchers')
     const watcherProfiles = res.data.map(pojo => new WatcherProfile(pojo))
     AppState.watcherProfiles = watcherProfiles
   }

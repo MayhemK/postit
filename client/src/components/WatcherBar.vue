@@ -7,7 +7,7 @@ import { useRoute } from 'vue-router';
 import { AppState } from '@/AppState.js';
 
 const route = useRoute()
-const watcher = computed(() => AppState.watcherProfiles)
+const watchers = computed(() => AppState.watcherProfiles)
 
 
 onMounted(() => {
@@ -31,7 +31,7 @@ async function getWatchersByAlbumId() {
     <div class="col-7">
       <div class="bg-dark-glass h-100 rounded-4 d-flex flex-column justify-content-around mx-0">
         <div class="fs-2 ">
-          {{ watcher.length }}
+          {{ watchers.length }}
         </div>
         <div>
           watchers
@@ -44,6 +44,14 @@ async function getWatchersByAlbumId() {
           <p class="mdi mdi-account-heart fs-3 mb-1 rounded-4"></p>
           <p>Join</p>
         </b>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div v-for="watcher in watchers" :key="watcher.id">
+          hi
+
+        </div>
       </div>
     </div>
   </div>
