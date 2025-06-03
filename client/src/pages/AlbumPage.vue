@@ -104,17 +104,20 @@ async function getPicturesByAlbum() {
           <div class="row">
             <div class="col-4">
               <div class="row mt-4">
-                <div class="col-12 text-center">
+                <!-- <div class="col-12 text-center">
                   <WatcherBar />
                   <div v-if="userInfo" class="btn btn-warning" :disabled="album.archived" data-bs-toggle="modal"
                     data-bs-target="#pictureModal">
                     Submit Picture
                   </div>
+                </div> -->
+                <div>
+                  This is where watcher bar will go
                 </div>
               </div>
             </div>
             <div class="col-8">
-              <div class="container masonry-container">
+              <div class="container">
                 <div class="row mt-4">
                   <div v-if="pictures">
                     <div v-for="picture in pictures" :key="picture.id" class="col-md-4">

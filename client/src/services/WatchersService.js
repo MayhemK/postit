@@ -6,10 +6,14 @@ import { AppState } from "@/AppState.js"
 class WatchersService {
   async createWatcher(watcherData) {
     const res = await api.post('api/watchers', watcherData)
+    logger.log(res.data)
     const watcher = new WatcherProfile(res.data)
     AppState.watcherProfiles.push(watcher)
     // AppState.activeAlbum.watcherCount++
   }
+
+
+
   async getWatchersByAlbumId(albumId) {
     const res = await api.get(`api/albums/${albumId}/watchers`)
     logger.log(res.data, 'got watchers')

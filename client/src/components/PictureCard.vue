@@ -4,12 +4,18 @@ import { Picture } from '@/models/Picture.js';
 defineProps({
   picture: { type: Picture, required: true }
 })
+
+async function setActivePicture() {
+
+}
 </script>
 
 
 <template>
-  <div>
-    <img :src="picture.imgUrl" alt="" class="rounded-5">
+  <div type="button" data-bs-toggle="modal" data-bs-target="#pictureModal" @click="setActivePicture()">
+    <div class="">
+      <img :src="picture.imgUrl" alt="" class="rounded-5">
+    </div>
   </div>
 </template>
 

@@ -5,7 +5,7 @@ import { Pop } from '@/utils/Pop.js';
 import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '@/AppState.js';
-import { create } from 'axios';
+import { logger } from '@/utils/Logger.js';
 
 const route = useRoute()
 const watchers = computed(() => AppState.watcherProfiles)
@@ -53,16 +53,16 @@ async function createWatcher() {
       <div>
         <b @click="createWatcher()" class="btn btn-success mx-0 px-3">
           <p class="mdi mdi-account-heart fs-3 mb-1 rounded-4"></p>
-          <p>Join</p>
+          <p class="d-none d-md-block">Join</p>
         </b>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <div v-for="watcher in watchers" :key="watcher.id">
+        <!-- <div v-for="watcher in watchers" :key="watcher.accountId">
           hi
 
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
