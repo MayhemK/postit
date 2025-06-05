@@ -6,18 +6,31 @@ import PictureModal from '@/components/PictureModal.vue';
 import WatcherBar from '@/components/WatcherBar.vue';
 import { albumsService } from '@/services/AlbumsService.js';
 import { picturesService } from '@/services/PictureService.js';
+import { watchersService } from '@/services/WatchersService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
+const watchers = computed(() => AppState.watcherProfiles)
 const album = computed(() => AppState.activeAlbum)
 const pictures = computed(() => AppState.pictures)
 const userInfo = computed(() => AppState.account)
 onMounted(() => {
   getAlbumById()
   getPicturesByAlbum()
+  getWatchersByAlbumId()
 })
+
+async function getWatchersByAlbumId() {
+  try {
+    const albumId = route.params.albumId
+    await watchersService.getWatchersByAlbumId(albumId)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 
 async function getAlbumById() {
   try {
@@ -106,7 +119,7 @@ async function getPicturesByAlbum() {
             <div class="col-4">
               <div class="row mt-4">
                 <div class="col-12 text-center">
-                  <WatcherBar />
+                  <WatcherBar :watchers="watchers" />
                   <div v-if="userInfo" class="btn btn-warning" :disabled="album.archived" data-bs-toggle="modal"
                     data-bs-target="#pictureModal">
                     Submit Picture

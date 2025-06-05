@@ -8,22 +8,9 @@ import { AppState } from '@/AppState.js';
 import { logger } from '@/utils/Logger.js';
 
 const route = useRoute()
-const watchers = computed(() => AppState.watcherProfiles)
-
-
-onMounted(() => {
-  getWatchersByAlbumId()
+const props = defineProps({
+  watchers: { type: Array, default: () => [] }
 })
-
-async function getWatchersByAlbumId() {
-  try {
-    const albumId = route.params.albumId
-    await watchersService.getWatchersByAlbumId(albumId)
-  }
-  catch (error) {
-    Pop.error(error);
-  }
-}
 
 async function createWatcher() {
   try {
@@ -42,7 +29,7 @@ async function createWatcher() {
     <div class="col-7">
       <div class="bg-dark-glass h-100 rounded-4 d-flex flex-column justify-content-around mx-0">
         <div class="fs-2 ">
-          {{ watchers.length }}
+          {{ props }}
           N/A
         </div>
         <div>
