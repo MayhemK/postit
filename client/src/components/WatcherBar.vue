@@ -28,12 +28,19 @@ async function createWatcher() {
   <div class="row text-center mb-3">
     <div class="col-7">
       <div class="bg-dark-glass h-100 rounded-4 d-flex flex-column justify-content-around mx-0">
-        <div class="fs-2 ">
-          {{ props }}
-          N/A
+        <div v-if="props.watchers.length >= 1">
+          <div class="fs-2 ">
+            {{ props.watchers.length }}
+          </div>
+          <div v-if="props.watchers.length > 1">
+            Watchers
+          </div>
+          <div v-else>
+            Watcher
+          </div>
         </div>
-        <div>
-          watchers
+        <div v-else>
+          Follow this Album!
         </div>
       </div>
     </div>
@@ -48,10 +55,10 @@ async function createWatcher() {
     <div class="row">
       <div class="col-12">
 
-        <!-- <div v-for="watcher in watchers" :key="watcher.accountId">
-          hi
+        <div v-for="watcher in watchers" :key="watcher.id">
+          {{ watcher.profile.name }}
 
-        </div> -->
+        </div>
       </div>
     </div>
   </div>

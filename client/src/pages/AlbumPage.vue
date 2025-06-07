@@ -28,7 +28,7 @@ async function getWatchersByAlbumId() {
     await watchersService.getWatchersByAlbumId(albumId)
   }
   catch (error) {
-    Pop.error(error);
+    Pop.error(error, 'getwatchersbyAlbum');
   }
 }
 
@@ -38,7 +38,7 @@ async function getAlbumById() {
     await albumsService.getAlbumById(albumId)
   }
   catch (error) {
-    Pop.error(error);
+    Pop.error(error, 'getAlbumById');
   }
 }
 
@@ -48,7 +48,7 @@ async function archiveAlbum() {
     await albumsService.archiveAlbum(albumId)
   }
   catch (error) {
-    Pop.error(error);
+    Pop.error(error, 'archive');
   }
 }
 
@@ -59,7 +59,7 @@ async function getPicturesByAlbum() {
     await picturesService.getPicturesByAlbum(albumId)
   }
   catch (error) {
-    Pop.error(error);
+    Pop.error(error, 'getPicturesByAlbum');
   }
 }
 </script>
@@ -125,16 +125,13 @@ async function getPicturesByAlbum() {
                     Submit Picture
                   </div>
                 </div>
-                <div>
-                  This is where watcher bar will go
-                </div>
               </div>
             </div>
             <div class="col-8">
               <div class="container">
                 <div class="row mt-4">
                   <div v-if="pictures">
-                    <div v-for="picture in pictures" :key="picture.id" class="col-md-4">
+                    <div v-for="picture in pictures" :key="picture.id" class="col-md-4 col-12">
                       <PictureCard :picture="picture" />
                     </div>
                     <div class="bg-dark-glass">
@@ -151,7 +148,7 @@ async function getPicturesByAlbum() {
     </div>
   </section>
   <CreatePictureModal />
-  <PictureModal />
+  <!-- <PictureModal /> -->
 </template>
 
 

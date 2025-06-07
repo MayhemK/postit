@@ -29,11 +29,12 @@ async function setActivePicture() {
 
 
 <template>
-  <div type="button" data-bs-toggle="modal" data-bs-target="#pictureView" @click="setActivePicture()">
+  <!-- <div type="button" data-bs-toggle="modal" data-bs-target="#pictureView" @click="setActivePicture()">
     <div class="">
       <img :src="picture.imgUrl" alt="" class="rounded-5">
     </div>
-  </div>
+  </div> -->
+  <img :src="picture.imgUrl" alt="" class="rounded-5">
 </template>
 
 

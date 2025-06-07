@@ -12,7 +12,7 @@ class Watcher {
 export class WatcherProfile extends Watcher {
   constructor(data) {
     super(data)
-    this.profile = new Account(data.profile)
+    this.profile = new Account(data)
   }
 }
 
