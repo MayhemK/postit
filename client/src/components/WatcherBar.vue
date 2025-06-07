@@ -6,6 +6,7 @@ import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '@/AppState.js';
 import { logger } from '@/utils/Logger.js';
+import { WatcherProfile } from '@/models/Watcher.js';
 
 const route = useRoute()
 const props = defineProps({
@@ -52,12 +53,14 @@ async function createWatcher() {
         </b>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-12">
-
-        <div v-for="watcher in watchers" :key="watcher.id">
-          {{ watcher.profile.name }}
-
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+          <div v-for="watcher in props.watchers" :key="watcher.id" class="text-center">
+            <img :src="watcher.profile.picture" :alt="watcher.profile.name + ' profile image'"
+              class="watcher-img border border-white">
+            <p class="text-light mb-0">{{ watcher.profile.name }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -65,4 +68,10 @@ async function createWatcher() {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.watcher-img {
+  height: 3.7em;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+</style>
