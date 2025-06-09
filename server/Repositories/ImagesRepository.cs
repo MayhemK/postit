@@ -1,3 +1,4 @@
+
 namespace postit.Repositories;
 
 public class ImagesRepository
@@ -8,10 +9,22 @@ public class ImagesRepository
     _db = db;
   }
 
-  // public List<Image> GetAll()
-  // {
-  //   return _db.Query<Image>("SELECT * FROM images;");
-  // }
+  public List<Image> GetAll()
+  {
+    string sql = @"
+    SELECT
+    images.*,
+    accounts.*
+    FROM images
+    INNER JOIN accounts ON accounts.id = images.creator_id;";
+
+    List<Image> images = _db.Query(sql, (Image image, Account account) =>
+    {
+      image.Creator = account;
+      return image;
+    }).ToList();
+    return images;
+  }
 
   internal List<Image> GetByAlbumId(int albumId)
   {
@@ -63,6 +76,16 @@ public class ImagesRepository
     string sql = "DELETE FROM images WHERE id = @Id LIMIT 1;";
     return _db.Execute(sql, new { id }) > 0;
   }
+
+  //   internal Image GetById(int imageId)
+  //   {
+  //   string sql = @"
+  //   SELECT
+  //   images.*,
+  //   accounts.*
+  //   FROM keeps
+  //   "
+  // }
 
   // internal Image Update(Image updateData)
   // {

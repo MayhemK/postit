@@ -9,5 +9,6 @@ export class Picture {
     this.createdAt = new Date(data.createdAt)
     this.updatedAt = new Date(data.updatedAt)
     this.creator = new Account(data.creator)
+    this.views = data.views
   }
 }

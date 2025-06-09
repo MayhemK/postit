@@ -41,4 +41,10 @@ public class ImagesService(ImagesRepository repo, AlbumsService aserv)
     }
     _repo.Delete(imageId);
   }
+
+  internal List<Image> GetAll()
+  {
+    List<Image> images = _repo.GetAll();
+    return images;
+  }
 }

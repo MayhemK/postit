@@ -11,6 +11,5 @@ export class Album{
     this.createdAt = new Date(data.createdAt)
     this.updatedAt = new Date(data.updatedAt)
     this.watcherCount = data.watcherCount
-    this.views = data.views
   }
 }

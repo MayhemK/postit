@@ -7,6 +7,22 @@ public class ImagesController(ImagesService imagesService, Auth0Provider auth0Pr
   private readonly ImagesService _imagesService = imagesService;
   private readonly Auth0Provider _auth0Provider = auth0Provider;
 
+  [HttpGet]
+  public ActionResult<List<Image>> GetAll()
+  {
+    try
+    {
+      List<Image> images = _imagesService.GetAll();
+      return Ok(images);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+
+
   [Authorize]
   [HttpPost]
   public async Task<ActionResult<Image>> Create([FromBody] Image imageData)

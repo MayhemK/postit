@@ -3,12 +3,11 @@ import { Picture } from "@/models/Picture.js"
 import { api } from "./AxiosService.js"
 
 class PictureService {
-  // async plusViews(id) {
-  //   const res = await api.get(`api/pictures/${id}`)
-  //   // TODO ADD VIEWS COLUMN DATA
-  //   // AppState.activePicture.views++
-  //   AppState.activePicture = new Picture(res.data)
-  // }
+  async plusViews(id) {
+    const res = await api.get(`api/pictures/${id}`)
+    AppState.activePicture.views++
+    AppState.activePicture = new Picture(res.data)
+  }
   setActivePicture(picture) {
     AppState.activePicture = picture
   }

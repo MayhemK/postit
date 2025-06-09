@@ -4,11 +4,6 @@ import { api } from "./AxiosService.js"
 import { Album } from "@/models/Album.js"
 
 class AlbumsService{
-  async plusView(albumId) {
-    const res = await api.get(`api/albums/${albumId}`)
-    AppState.activeAlbum.views++
-    AppState.activeAlbum = new Album(res.data)
-  }
   async archiveAlbum(albumId) {
     const res = await api.delete(`api/albums/${albumId}`)
     const album = new Album(res.data)
