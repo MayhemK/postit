@@ -26,11 +26,6 @@ const routes = [
     path: '/albums/:albumId',
     name: 'AlbumDetails',
     component: loadPage('AlbumPage')
-  },
-  {
-    path: '/profile/:profileId',
-    name: 'ProfileDetails',
-    component: loadPage('ProfilePage')
   }
 ]
 

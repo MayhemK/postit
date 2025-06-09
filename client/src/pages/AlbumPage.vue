@@ -86,13 +86,11 @@ async function getPicturesByAlbum() {
                         <span class="mdi mdi-alert"></span>
                       </div>
                       <div v-else class="text-decoration-underline fs-4">Accepting Submissions!</div>
-                      <RouterLink :to="{ name: 'ProfileDetails', params: { profileId: album.creator.id } }">
-                        <div class="d-flex justify-content-end align-items-center gap-3">
-                          <p class="mb-0">{{ album.creator.name }}</p>
-                          <img :src="album.creator.picture" :alt="`${album.creator.name} profile image`"
-                            class="creator-img">
-                        </div>
-                      </RouterLink>
+                      <div class="d-flex justify-content-end align-items-center gap-3">
+                        <p class="mb-0">{{ album.creator.name }}</p>
+                        <img :src="album.creator.picture" :alt="`${album.creator.name} profile image`"
+                          class="creator-img">
+                      </div>
                     </div>
                     <div class="container">
                       <div class="row align-items-center">

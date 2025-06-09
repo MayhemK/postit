@@ -9,7 +9,8 @@ defineProps({
 
 <template>
   <section>
-    <RouterLink :to="{ name: 'AlbumDetails', params: { albumId: album.id } }" :title="`go to ${album.title} page`">
+    <RouterLink :to="{ name: 'AlbumDetails', params: { albumId: album.id } }" :title="`go to ${album.title} page`"
+      class=" text-decoration-none">
       <div class="text-light rounded shadow p-2 album-card mb-3 d-flex align-items-end"
         :style="{ backgroundImage: `url(${album.coverImg})` }">
         <div class="d-flex justify-content-between align-items-center bg-dark-glass rounded p-2 flex-grow-1">
@@ -22,7 +23,7 @@ defineProps({
           </div>
           <div class="bg-dark rounded-5 p-1">
             <span class="mdi mdi-account-multiple me-2"></span>
-            <span>0</span>
+            <span>{{ album.watcherCount }}</span>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { AppState } from "@/AppState.js"
 class WatchersService {
   async deleteWatcher(watcherId) {
     const res = await api.delete(`/api/watchers/${watcherId}`)
-    logger.log('Deleted Watcher')
+    logger.log('Deleted Watcher', res.data)
     const watcherAlbums = AppState.watcherAlbums
     const index = watcherAlbums.findIndex(watcher => watcher.id == watcherId)
     watcherAlbums.splice(index, 1)
