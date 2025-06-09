@@ -21,7 +21,19 @@ public class ImagesController(ImagesService imagesService, Auth0Provider auth0Pr
     }
   }
 
-
+  [HttpGet("{imageId}")]
+  public ActionResult<Image> GetById(int imageId)
+  {
+    try
+    {
+      Image image = _imagesService.IncreaseViews(imageId);
+      return Ok(image);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 
   [Authorize]
   [HttpPost]

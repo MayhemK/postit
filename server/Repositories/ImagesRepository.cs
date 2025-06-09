@@ -1,4 +1,5 @@
 
+
 namespace postit.Repositories;
 
 public class ImagesRepository
@@ -77,20 +78,18 @@ public class ImagesRepository
     return _db.Execute(sql, new { id }) > 0;
   }
 
-  //   internal Image GetById(int imageId)
-  //   {
-  //   string sql = @"
-  //   SELECT
-  //   images.*,
-  //   accounts.*
-  //   FROM keeps
-  //   "
-  // }
+  internal void IncreaseViews(Image image)
+  {
+    string sql = @"
+    UPDATE images
+    SET views = @Views
+    WHERE id = @Id LIMIT 1;";
+    int rowsAffected = _db.Execute(sql, image);
 
-  // internal Image Update(Image updateData)
-  // {
-  //   string sql = "UPDATE images SET id = @Id;";
-  //   _db.Execute(sql, updateData);
-  //   return updateData;
-  // }
+    if (rowsAffected != 1)
+    {
+      throw new Exception(rowsAffected + " rows were affected and that is bad");
+    }
+  }
+
 }

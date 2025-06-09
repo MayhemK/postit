@@ -47,4 +47,12 @@ public class ImagesService(ImagesRepository repo, AlbumsService aserv)
     List<Image> images = _repo.GetAll();
     return images;
   }
+
+  internal Image IncreaseViews(int imageId)
+  {
+    Image image = GetImageById(imageId);
+    image.Views++;
+    _repo.IncreaseViews(image);
+    return image;
+  }
 }
