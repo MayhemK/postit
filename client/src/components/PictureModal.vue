@@ -1,8 +1,19 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 const picture = computed(() => AppState.activePicture)
+
+async function plusViews() {
+  try {
+    logger.log('yerp')
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 </script>
 
 

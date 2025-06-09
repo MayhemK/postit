@@ -7,4 +7,5 @@ public class Image
   public int AlbumId { get; set; }
   public string ImgUrl { get; set; }
   public Account Creator { get; set; }
+  public int Views { get; set; }
 }

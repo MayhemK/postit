@@ -36,6 +36,7 @@ async function getAlbumById() {
   try {
     const albumId = route.params.albumId
     await albumsService.getAlbumById(albumId)
+    plusView()
   }
   catch (error) {
     Pop.error(error, 'getAlbumById');
@@ -60,6 +61,16 @@ async function getPicturesByAlbum() {
   }
   catch (error) {
     Pop.error(error, 'getPicturesByAlbum');
+  }
+}
+
+async function plusView() {
+  try {
+    const albumId = route.params.albumId
+    await albumsService.plusView(albumId)
+  }
+  catch (error) {
+    Pop.error(error);
   }
 }
 </script>
