@@ -1,4 +1,5 @@
 import { reactive } from 'vue'
+import { WatcherAlbum } from './models/Watcher.js'
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -15,6 +16,8 @@ export const AppState = reactive({
   /** @type {import('./models/Picture.js').Picture} */
   activePicture: null,
   /** @type {import('./models/Watcher.js').WatcherProfile[]} */
-  watcherProfiles: []
+  watcherProfiles: [],
+  /** @type {import('./models/Watcher.js').WatcherAlbum[]} */
+  watcherAlbums: []
 })
 
