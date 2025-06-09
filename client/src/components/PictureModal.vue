@@ -10,10 +10,9 @@ const picture = computed(() => AppState.activePicture)
 
 
 <template>
-  <div>
+  <div v-if="picture">
 
-    <div class="modal fade bg-image" id="pictureView" tabindex="-1" aria-labelledby="pictureModalLabel"
-      aria-hidden="true">
+    <div class="modal fade bg-image" id="PicModal" tabindex="-1" aria-labelledby="pictureModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-dark-glass border text-light text-shadow">
           <div class="modal-header">

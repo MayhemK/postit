@@ -149,7 +149,7 @@ async function getPicturesByAlbum() {
     </div>
   </section>
   <CreatePictureModal />
-  <!-- <PictureModal /> -->
+  <PictureModal />
 </template>
 
 

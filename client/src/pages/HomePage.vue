@@ -93,7 +93,6 @@ async function getAlbums() {
     </div>
   </section>
   <CreateAlbumModal />
-  <PictureModal />
 </template>
 
 <style scoped lang="scss">

@@ -12,7 +12,7 @@ const props = defineProps({
 async function setActivePicture() {
   try {
     picturesService.setActivePicture(props.picture)
-    // await plusViews()
+    await plusViews()
   }
   catch (error) {
     Pop.error(error);
@@ -32,7 +32,7 @@ async function setActivePicture() {
 
 
 <template>
-  <div type="button" data-bs-toggle="modal" data-bs-target="#pictureView" @click="setActivePicture()">
+  <div type="button" data-bs-toggle="modal" data-bs-target="#PicModal" @click="setActivePicture()">
     <div class="">
       <img :src="picture.imgUrl" alt="picture.description || 'Picture'" class="rounded-5">
     </div>
