@@ -36,6 +36,7 @@ public class WatchersController(WatchersService watchersService, Auth0Provider a
     }
     catch (Exception exception)
     {
+      Console.WriteLine($"Error deleting watcher: {exception.Message}");
       return BadRequest(exception.Message);
     }
   }

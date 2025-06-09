@@ -27,6 +27,7 @@ public class WatchersService(WatchersRepository repository)
     Watcher watcher = _repo.GWBI(watcherId);
     if (watcher == null)
     {
+      Console.WriteLine($"Watcher with ID {watcherId} not found.");
       throw new Exception("Invalid watcher Id");
     }
     return watcher;

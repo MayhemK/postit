@@ -74,15 +74,16 @@ async function getPicturesByAlbum() {
         <div class="col-12">
           <div class="row">
             <div class="col-12">
-              <div class="p-5 rounded-5 bg-img d-flex align-items-end"
+              <div class="p-5 rounded-5 bg-img d-flex align-items-end justify-content-center"
                 :style="{ backgroundImage: `url(${album.coverImg})` }">
-                <div class="bg-dark-glass rounded-5 px-5 py-3 flex-grow-1">
+                <div class="bg-dark-glass rounded-5 px-md-5 py-3 text-light text-center"
+                  style="max-width: 700px; width: 100%;">
                   <div class="mb-4">
-                    <p class="text-center fs-2 fw-bold">{{ album.title }}</p>
-                    <p v-if="album.description" class="fs-4 text-center">{{ album.description }}</p>
+                    <p class="fs-2 fw-bold">{{ album.title }}</p>
+                    <p v-if="album.description" class="fs-4">{{ album.description }}</p>
                     <p v-else class="fs-4">A nice album</p>
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                      <div v-if="album.archived" class="text-centered fs-5">
+                      <div v-if="album.archived" class="fs-5">
                         <span class="mdi mdi-alert">This Album is archived and not accepting new pictures</span>
                         <span class="mdi mdi-alert"></span>
                       </div>
@@ -94,19 +95,20 @@ async function getPicturesByAlbum() {
                       </div>
                     </div>
                     <div class="container">
-                      <div class="row align-items-center">
-                        <div class="col-2">
-                          <div class="bg-primary rounded-3 text-center text-capitalize m-0 p-2">{{ album.category }}
+                      <div class="row align-items-center justify-content-center">
+                        <div class="col-auto me-2 mb-2">
+                          <div class="bg-primary rounded-3 text-center text-capitalize px-3 py-2">
+                            {{ album.category }}
                           </div>
                         </div>
-                        <div v-if="userInfo && album.creator.id == userInfo.id" class="col-2">
+                        <div v-if="userInfo && album.creator.id == userInfo.id" class="col-auto mb-2">
                           <div v-if="album.archived" @click="archiveAlbum()"
-                            class="bg-danger rounded-3 text-center text-capitalize m-0 p-2" type="button">Unlock
-                            <span class="mdi mdi-lock-open-variant"></span>
+                            class="bg-danger rounded-3 text-center text-capitalize px-3 py-2" type="button">
+                            Unlock <span class="mdi mdi-lock-open-variant"></span>
                           </div>
                           <div v-else @click="archiveAlbum()"
-                            class="bg-danger rounded-3 text-center text-capitalize m-0 p-2" type="button">Archive
-                            <span class="mdi mdi-lock"></span>
+                            class="bg-danger rounded-3 text-center text-capitalize px-3 py-2" type="button">
+                            Archive <span class="mdi mdi-lock"></span>
                           </div>
                         </div>
                       </div>

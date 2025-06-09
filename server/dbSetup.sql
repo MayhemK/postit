@@ -55,3 +55,7 @@ SELECT albums.*, accounts.*
 FROM albums
     INNER JOIN accounts on accounts.id = albums.creator_id
 ORDER BY albums.created_at DESC;
+
+DELETE FROM watchers;
+
+SELECT * FROM watchers WHERE id = 40
