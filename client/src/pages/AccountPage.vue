@@ -49,7 +49,7 @@ async function deleteWatcher(watcherId) {
               <div v-for="watcher in watched" :key="watcher.id" class="col-md-4">
                 <AlbumCard :album="watcher.album" />
                 <div class="text-center mb-3">
-                  <button @click="deleteWatcher(watcher.id)" class="btn btn-danger">Unfollow</button>
+                  <button @click="deleteWatcher(watcher.watcherId)" class="btn btn-danger">Unfollow</button>
                 </div>
               </div>
             </div>

@@ -59,3 +59,7 @@ ORDER BY albums.created_at DESC;
 DELETE FROM watchers;
 
 SELECT * FROM watchers WHERE id = 40
+
+SELECT id, album_id, account_id FROM watchers;
+
+ALTER TABLE albums MODIFY COLUMN watcher_count INT DEFAULT 0;

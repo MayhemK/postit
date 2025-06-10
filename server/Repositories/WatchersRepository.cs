@@ -16,17 +16,6 @@ public class WatchersRepository(IDbConnection db)
     FROM watchers
     WHERE watchers.id = LAST_INSERT_ID();";
 
-    //NOTE - postman didn't like the format  this extended version was returning
-    // INNER JOIN accounts ON accounts.id = watchers.account_id
-
-    // WatcherProfile watcherProfile = _db.Query(sql, (Watcher watcher, WatcherProfile profile) =>
-    // {
-    //   profile.AlbumId = watcher.AlbumId;
-    //   profile.WatcherId = watcher.Id;
-    //   return profile;
-    // }, watcherData).SingleOrDefault();
-    // return watcherProfile;
-
     Watcher createdWatcher = _db.Query<Watcher>(sql, watcherData).SingleOrDefault();
     return createdWatcher;
   }
@@ -52,7 +41,7 @@ public class WatchersRepository(IDbConnection db)
   internal List<WatcherAlbum> GWABAI(string accountId)
   {
     string sql = @"
-    SELECT
+    SELECT 
     watchers.*,
     albums.*,
     accounts.*

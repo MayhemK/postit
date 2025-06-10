@@ -20,5 +20,6 @@ export class WatcherAlbum extends Watcher {
   constructor(data) {
     super(data)
     this.album = new Album(data)
+    this.watcherId = data.watcherId
   }
 }
