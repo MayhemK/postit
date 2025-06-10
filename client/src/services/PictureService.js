@@ -4,6 +4,7 @@ import { api } from "./AxiosService.js"
 
 class PictureService {
   async plusViews(id) {
+    debugger
     const res = await api.get(`api/pictures/${id}`)
     AppState.activePicture.views++
     AppState.activePicture = new Picture(res.data)

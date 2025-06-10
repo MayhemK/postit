@@ -1,6 +1,7 @@
 <script setup>
 import { picturesService } from '@/services/PictureService.js';
 import { Pop } from '@/utils/Pop.js';
+import { Modal } from 'bootstrap';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -15,6 +16,18 @@ async function createPicture() {
   try {
     await picturesService.createPicture(editablePictureData.value)
     editablePictureData.value.imgUrl = ''
+    Pop.success('Picture successfully created!')
+    const modalElement = document.getElementById('pictureModal')
+    if (modalElement) {
+      const modal = Modal.getInstance(modalElement) || new Modal(modalElement)
+      modal.hide()
+      modalElement.addEventListener('hidden.bs.modal', () => {
+        const backdrop = document.querySelector('.modal-backdrop')
+        if (backdrop) {
+          backdrop.remove()
+        }
+      })
+    }
   }
   catch (error) {
     Pop.error(error);
