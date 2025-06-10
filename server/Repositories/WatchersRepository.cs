@@ -18,6 +18,7 @@ public class WatchersRepository(IDbConnection db)
 
     Watcher createdWatcher = _db.Query<Watcher>(sql, watcherData).SingleOrDefault();
     return createdWatcher;
+    // NOTE JOIN ACCOUNT
   }
 
   internal List<WatcherProfile> GetWatcherProfilesByAlbumId(int albumId)

@@ -70,6 +70,7 @@ public class ImagesRepository
     string sql = "SELECT * FROM images WHERE id = @imageId;";
     Image foundImage = _db.Query<Image>(sql, new { imageId }).SingleOrDefault();
     return foundImage;
+    // NOTE JOIN ACCOUNT
   }
 
   internal bool Delete(int id)

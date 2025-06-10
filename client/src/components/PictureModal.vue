@@ -10,8 +10,7 @@ const picture = computed(() => AppState.activePicture)
 
 
 <template>
-  <div v-if="picture">
-
+  <div>
     <div class="modal fade bg-image" id="PicModal" tabindex="-1" aria-labelledby="pictureModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-dark-glass border text-light text-shadow">
@@ -19,7 +18,7 @@ const picture = computed(() => AppState.activePicture)
             <h1 class="modal-title fs-5" id="pictureModalLabel"> image modal </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div v-if="picture" class="modal-body">
             <div class="row">
               <div class="col-md-7">
                 <div>
@@ -48,6 +47,7 @@ const picture = computed(() => AppState.activePicture)
 <style lang="scss" scoped>
 .bg-image {
   background-image: url('/src/assets/img/stars.svg');
+  background-size: cover;
 }
 
 img {
