@@ -45,4 +45,14 @@ public class AlbumsService(AlbumsRepository repo)
     _repo.ArchiveAlbum(album);
     return album;
   }
+
+  internal void IncreaseWatcherCount(int albumId)
+  {
+    _repo.UpdateWatcherCount(albumId, 1);
+  }
+
+  internal void DecreaseWatcherCount(int albumId)
+  {
+    _repo.UpdateWatcherCount(albumId, -1);
+  }
 }

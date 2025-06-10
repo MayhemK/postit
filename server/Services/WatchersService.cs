@@ -1,12 +1,14 @@
 namespace postit.Services;
 
-public class WatchersService(WatchersRepository repository)
+public class WatchersService(WatchersRepository repository, AlbumsService albumsService)
 {
   private readonly WatchersRepository _repo = repository;
+  private readonly AlbumsService _albumsService = albumsService;
 
   internal Watcher CreateWatcher(Watcher watcherData)
   {
     Watcher watcher = _repo.CreateWatcher(watcherData);
+    _albumsService.IncreaseWatcherCount(watcherData.AlbumId);
     return watcher;
   }
 
@@ -41,5 +43,6 @@ public class WatchersService(WatchersRepository repository)
       throw new Exception("You may not delete another user's watcher");
     }
     _repo.DeleteWatcher(watcherId);
+    _albumsService.DecreaseWatcherCount(watcher.AlbumId);
   }
 }

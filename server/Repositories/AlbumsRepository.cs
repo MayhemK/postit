@@ -104,4 +104,9 @@ public class AlbumsRepository
     return albums;
   }
 
+  internal void UpdateWatcherCount(int albumId, int v)
+  {
+    string sql = "UPDATE albums SET watcher_count = watcher_count + @v WHERE id = @albumId LIMIT 1;";
+    _db.Execute(sql, new { albumId, v });
+  }
 }
