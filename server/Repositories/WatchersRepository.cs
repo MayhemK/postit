@@ -18,14 +18,14 @@ public class WatchersRepository(IDbConnection db)
     INNER JOIN accounts ON accounts.id = watchers.account_id
     WHERE watchers.id = LAST_INSERT_ID();";
 
-    WatcherProfile createdWatcher = _db.Query(sql, (Watcher watcher, WatcherProfile profile) =>
+    WatcherProfile watcherProfile = _db.Query(sql, (Watcher watcher, WatcherProfile profile) =>
     {
       profile.AlbumId = watcher.AlbumId;
       profile.WatcherId = watcher.Id;
       profile.AccountId = watcher.AccountId;
       return profile;
     }, watcherData).SingleOrDefault();
-    return createdWatcher;
+    return watcherProfile;
   }
 
   internal List<WatcherProfile> GetWatcherProfilesByAlbumId(int albumId)
@@ -37,11 +37,11 @@ public class WatchersRepository(IDbConnection db)
     FROM watchers
     INNER JOIN accounts ON accounts.id = watchers.account_id
     WHERE watchers.album_id = @albumId;";
-    List<WatcherProfile> watcherProfiles = _db.Query(sql, (Watcher watcher, WatcherProfile account) =>
+    List<WatcherProfile> watcherProfiles = _db.Query(sql, (Watcher watcher, WatcherProfile profile) =>
     {
-      account.AlbumId = watcher.AlbumId;
-      account.WatcherId = watcher.Id;
-      return account;
+      profile.AlbumId = watcher.AlbumId;
+      profile.WatcherId = watcher.Id;
+      return profile;
     }, new { albumId }).ToList();
     return watcherProfiles;
   }

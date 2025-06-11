@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace postit.Models;
 
 public class Watcher
@@ -11,6 +13,8 @@ public class Watcher
 
 public class WatcherProfile : Account
 {
+  public int Id => WatcherId;
+  // [JsonIgnore]
   public int WatcherId { get; set; }
   public int AlbumId { get; set; }
   public string AccountId { get; set; }
