@@ -22,7 +22,6 @@ class WatchersService {
     logger.log(res.data)
     const watcher = new WatcherProfile(res.data)
     AppState.watcherProfiles.push(watcher)
-    // AppState.activeAlbum.watcherCount++
   }
 
   async getWatchersByAlbumId(albumId) {

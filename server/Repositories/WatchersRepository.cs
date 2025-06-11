@@ -15,10 +15,15 @@ public class WatchersRepository(IDbConnection db)
     watchers.*,
     accounts.*
     FROM watchers
-    JOIN accounts ON accounts.id = watchers.account_id
+    INNER JOIN accounts ON accounts.id = watchers.account_id
     WHERE watchers.id = LAST_INSERT_ID();";
 
-    WatcherProfile createdWatcher = _db.Query<WatcherProfile>(sql, watcherData).SingleOrDefault();
+    WatcherProfile createdWatcher = _db.Query(sql, (Watcher watcher, WatcherProfile profile) =>
+    {
+      profile.AlbumId = watcher.AlbumId;
+      profile.WatcherId = watcher.Id;
+      return profile;
+    }, watcherData).SingleOrDefault();
     return createdWatcher;
   }
 

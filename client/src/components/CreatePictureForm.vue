@@ -43,6 +43,10 @@ async function createPicture() {
         placeholder="Picture URL" maxlength="1000" required>
       <label for="pictureImgUrl">Picture URL</label>
     </div>
+    <div v-if="editablePictureData.imgUrl" class="mb-3">
+      <p class="text-light text-center text-decoration-underline">Image preview</p>
+      <img :src="editablePictureData.imgUrl" alt="Preview of your cover image" class="w-100 rounded-3 border">
+    </div>
     <div class="text-end">
       <button class="btn btn-primary" type="submit">Submit</button>
     </div>
