@@ -22,6 +22,7 @@ public class WatchersRepository(IDbConnection db)
     {
       profile.AlbumId = watcher.AlbumId;
       profile.WatcherId = watcher.Id;
+      profile.AccountId = watcher.AccountId;
       return profile;
     }, watcherData).SingleOrDefault();
     return createdWatcher;

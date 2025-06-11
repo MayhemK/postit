@@ -75,3 +75,16 @@ FROM images
     INNER JOIN accounts ON accounts.id = images.creator_id
 WHERE
     images.album_id = @albumId;
+
+INSERT INTO
+    watchers (album_id, account_id)
+VALUES (
+        119,
+        '67e32349d1583cd79fcfd0a4'
+    );
+
+SELECT watchers.*, accounts.*
+FROM watchers
+    INNER JOIN accounts ON accounts.id = watchers.account_id
+WHERE
+    watchers.id = LAST_INSERT_ID();
