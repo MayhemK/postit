@@ -58,6 +58,10 @@ ORDER BY albums.created_at DESC;
 
 DELETE FROM watchers;
 
+DELETE FROM albums;
+
+DELETE FROM images;
+
 SELECT * FROM watchers WHERE id = 40
 
 SELECT id, album_id, account_id FROM watchers;
