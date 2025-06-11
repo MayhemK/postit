@@ -9,13 +9,13 @@ public class WatchersController(WatchersService watchersService, Auth0Provider a
 
   [Authorize]
   [HttpPost]
-  public async Task<ActionResult<Watcher>> CreateWatcher([FromBody] Watcher watcherData)
+  public async Task<ActionResult<WatcherProfile>> CreateWatcher([FromBody] Watcher watcherData)
   {
     try
     {
       Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
       watcherData.AccountId = userInfo.Id;
-      Watcher watcher = _watchersService.CreateWatcher(watcherData);
+      WatcherProfile watcher = _watchersService.CreateWatcher(watcherData);
       return Ok(watcher);
     }
     catch (Exception exception)

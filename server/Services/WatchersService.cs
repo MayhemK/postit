@@ -5,9 +5,9 @@ public class WatchersService(WatchersRepository repository, AlbumsService albums
   private readonly WatchersRepository _repo = repository;
   private readonly AlbumsService _albumsService = albumsService;
 
-  internal Watcher CreateWatcher(Watcher watcherData)
+  internal WatcherProfile CreateWatcher(Watcher watcherData)
   {
-    Watcher watcher = _repo.CreateWatcher(watcherData);
+    WatcherProfile watcher = _repo.CreateWatcher(watcherData);
     _albumsService.IncreaseWatcherCount(watcherData.AlbumId);
     return watcher;
   }
