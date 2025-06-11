@@ -67,10 +67,19 @@ public class ImagesRepository
 
   internal Image GetImageById(int imageId)
   {
-    string sql = "SELECT * FROM images WHERE id = @imageId;";
-    Image foundImage = _db.Query<Image>(sql, new { imageId }).SingleOrDefault();
+    string sql = @"
+    SELECT
+    images.*,
+    accounts.*
+    FROM images
+    INNER JOIN accounts ON accounts.id = images.creator_id
+    WHERE images.id = @imageId;";
+    Image foundImage = _db.Query(sql, (Image image, Account account) =>
+    {
+      image.Creator = account;
+      return image;
+    }, new { imageId }).SingleOrDefault();
     return foundImage;
-    // NOTE JOIN ACCOUNT
   }
 
   internal bool Delete(int id)

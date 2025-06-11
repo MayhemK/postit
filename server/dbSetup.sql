@@ -63,3 +63,15 @@ SELECT * FROM watchers WHERE id = 40
 SELECT id, album_id, account_id FROM watchers;
 
 ALTER TABLE albums MODIFY COLUMN watcher_count INT DEFAULT 0;
+
+SELECT images.*, accounts.*
+FROM images
+    JOIN accounts ON image.creatorId = account.id
+WHERE
+    image.id = 21;
+
+SELECT images.*, accounts.*
+FROM images
+    INNER JOIN accounts ON accounts.id = images.creator_id
+WHERE
+    images.album_id = @albumId;
