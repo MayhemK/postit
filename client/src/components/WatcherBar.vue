@@ -10,7 +10,7 @@ import { WatcherProfile } from '@/models/Watcher.js';
 
 const route = useRoute()
 const props = defineProps({
-  watchers: { type: Array, default: () => [] }
+  watchers: { type: Array, default: () => [], required: true }
 })
 
 async function createWatcher() {
