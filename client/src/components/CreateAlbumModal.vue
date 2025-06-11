@@ -6,7 +6,8 @@ import AlbumForm from './AlbumForm.vue';
 
 
 <template>
-  <div class="modal fade bg-image" id="albumModal" tabindex="-1" aria-labelledby="albumModalLabel" aria-hidden="true">
+  <div class="modal fade bg-image text-light" id="albumModal" tabindex="-1" aria-labelledby="albumModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content bg-dark-glass border text-light text-shadow">
         <div class="modal-header">

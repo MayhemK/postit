@@ -34,7 +34,7 @@ async function createAlbum() {
 
 
 <template>
-  <form @submit.prevent="createAlbum()" class="text-dark">
+  <form @submit.prevent="createAlbum()" class="text-light">
     <div class="form-floating mb-3">
       <input v-model="editableData.title" type="text" class="form-control" id="albumTitle" placeholder="Album Title"
         minlength="3" maxlength="25" required>
