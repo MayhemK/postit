@@ -5,9 +5,9 @@ import Login from './Login.vue';
 
 const theme = ref(loadState('theme') || 'light')
 
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-}
+// function toggleTheme() {
+//   theme.value = theme.value == 'light' ? 'dark' : 'light'
+// }
 
 watch(theme, () => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)

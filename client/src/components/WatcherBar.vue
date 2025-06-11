@@ -1,12 +1,7 @@
 <script setup>
-import { albumsService } from '@/services/AlbumsService.js';
 import { watchersService } from '@/services/WatchersService.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { AppState } from '@/AppState.js';
-import { logger } from '@/utils/Logger.js';
-import { WatcherProfile } from '@/models/Watcher.js';
 
 const route = useRoute()
 const props = defineProps({

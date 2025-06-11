@@ -2,7 +2,6 @@
 import { AppState } from '@/AppState.js';
 import AlbumCard from '@/components/AlbumCard.vue';
 import CreateAlbumModal from '@/components/CreateAlbumModal.vue';
-import PictureModal from '@/components/PictureModal.vue';
 import { albumsService } from '@/services/AlbumsService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, ref } from 'vue';

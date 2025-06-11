@@ -2,8 +2,6 @@
 import { Picture } from '@/models/Picture.js';
 import { picturesService } from '@/services/PictureService.js';
 import { Pop } from '@/utils/Pop.js';
-import PictureModal from './PictureModal.vue';
-import { logger } from '@/utils/Logger.js';
 
 const props = defineProps({
   picture: { type: Picture, required: true }

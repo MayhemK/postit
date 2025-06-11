@@ -70,8 +70,3 @@ async function createAlbum() {
 
 
 <style lang="scss" scoped></style>
-
-<!-- title
-description
-coverimg
-category -->
