@@ -22,6 +22,7 @@ public class AlbumsRepository
     List<Album> albums = _db.Query(sql, (Album album, Account account) =>
     {
       album.Creator = account;
+      album.MemberCount = album.WatcherCount;
       return album;
     }).ToList();
 

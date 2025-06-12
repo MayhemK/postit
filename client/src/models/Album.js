@@ -11,5 +11,7 @@ export class Album{
     this.createdAt = new Date(data.createdAt)
     this.updatedAt = new Date(data.updatedAt)
     this.watcherCount = data.watcherCount || 0
+    this.memberCount = data.memberCount || 0
+
   }
 }

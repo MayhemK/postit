@@ -13,6 +13,8 @@ public class Album
   public Account Creator { get; set; }
   public string CreatorId { get; set; }
   public int WatcherCount { get; set; }
+  public int MemberCount { get; set; }
+
 
 }
 
