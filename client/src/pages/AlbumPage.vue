@@ -123,7 +123,7 @@ async function getPicturesByAlbum() {
               <div class="row mt-4">
                 <div class="col-12 text-center">
                   <WatcherBar :watchers="watchers" />
-                  <div v-if="userInfo" class="btn btn-warning" :disabled="album.archived" data-bs-toggle="modal"
+                  <div v-if="userInfo && !album.archived" class="btn btn-warning" data-bs-toggle="modal"
                     data-bs-target="#pictureModal">
                     Submit Picture
                   </div>
