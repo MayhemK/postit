@@ -28,5 +28,6 @@ import CreatePictureForm from './CreatePictureForm.vue';
 <style lang="scss" scoped>
 .bg-image {
   background-image: url('/src/assets/img/stars.svg');
+  background-size: cover;
 }
 </style>
