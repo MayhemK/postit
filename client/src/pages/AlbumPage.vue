@@ -8,6 +8,7 @@ import { albumsService } from '@/services/AlbumsService.js';
 import { picturesService } from '@/services/PictureService.js';
 import { watchersService } from '@/services/WatchersService.js';
 import { Pop } from '@/utils/Pop.js';
+import { Modal } from 'bootstrap';
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -36,6 +37,7 @@ async function getAlbumById() {
   try {
     const albumId = route.params.albumId
     await albumsService.getAlbumById(albumId)
+
   }
   catch (error) {
     Pop.error(error, 'getAlbumById');

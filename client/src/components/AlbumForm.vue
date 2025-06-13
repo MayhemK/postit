@@ -23,7 +23,18 @@ async function createAlbum() {
       description: '',
       category: ''
     }
-    Modal.getOrCreateInstance('#albumModal').hide()
+    // NOTE very big but helpful hide modal
+    const modalElement = document.getElementById('albumModal')
+    if (modalElement) {
+      const modal = Modal.getInstance(modalElement) || new Modal(modalElement)
+      modal.hide()
+      modalElement.addEventListener('hidden.bs.modal', () => {
+        const backdrop = document.querySelector('.modal-backdrop')
+        if (backdrop) {
+          backdrop.remove()
+        }
+      })
+    }
     router.push({ name: 'AlbumDetails', params: { albumId: album.id } })
   }
   catch (error) {
