@@ -69,6 +69,7 @@ async function getPicturesByAlbum() {
 
 
 <template>
+  <div>hi</div>
   <section>
     <div v-if="!album" class="text-center fw-bold fs-1 text-light mt-5">Error loading page</div>
     <div v-else class="container">

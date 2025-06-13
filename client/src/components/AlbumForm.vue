@@ -1,7 +1,7 @@
 <script setup>
 import { albumsService } from '@/services/AlbumsService.js';
 import { Pop } from '@/utils/Pop.js';
-import { Modal } from 'bootstrap/dist/js/bootstrap.bundle.js';
+import { Modal } from 'bootstrap';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
